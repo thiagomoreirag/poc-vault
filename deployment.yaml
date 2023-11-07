@@ -19,13 +19,13 @@ spec:
       labels:
         app: poc-vault
     spec:
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
       terminationGracePeriodSeconds: 30
       containers:
       - name: poc-vault
         image: ghcr.io/thiagomoreirag/poc-vault:latest
         imagePullPolicy: Always
-      imagePullSecrets:
-      - name: dockerconfigjson-github-com
         resources:
           limits:
             memory: "128Mi"
@@ -36,11 +36,9 @@ spec:
         ports:
         - containerPort: 3000
           name: http
-        envs:
-          - name: PORT
-            value: 3000
-          - name: NODE_ENV
-            value: test
+        envFrom:
+        - configMapRef:
+          name: poc-vault
         
 ---
 kind: Service
