@@ -11,7 +11,6 @@ app.get('/env', (req, res) => {
   const envs = {
     NODE_ENV,
     PORT,
-    DEMO_ENV,
     DB_USER,
     DB_PASS
   } = process.env

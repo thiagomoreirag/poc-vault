@@ -1,0 +1,16 @@
+name: deploy
+run-name: ${{ github.actor }}
+on:
+  push:
+    branches: ["main"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and Publish the Docker image
+      run: | 
+        docker build . --file Dockerfile --tag poc-vault:latest
+        docker push ghcr.io/thiagomoreirag/poc-vault:latest
+
+

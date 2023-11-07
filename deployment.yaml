@@ -21,7 +21,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-      - image: poc-vault
+      - image: ghcr.io/thiagomoreirag/poc-vault:latest
         imagePullPolicy: Always
         name: poc-vault
         resources:
