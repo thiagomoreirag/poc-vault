@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poc-vault
+  labels:
+    app: poc-vault
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: poc-vault
+  template:
+    metadata:
+      labels:
+        app: poc-vault
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - image: poc-vault
+        imagePullPolicy: Always
+        name: poc-vault
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "40m"
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: 3000
+          name: http
+        envs:
+          - name: PORT
+            value: 3000
+          - name: NODE_ENV
+            value: test
+        
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: poc-vault-service
+spec:
+  selector:
+    app: poc-vault
+  ports:
+    - port: 3000
