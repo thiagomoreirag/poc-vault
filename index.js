@@ -8,12 +8,10 @@ app.listen(PORT, () => {
 })
 
 app.get('/env', (req, res) => {
-  const envs = {
-    NODE_ENV,
-    PORT,
-    DB_USER,
-    DB_PASS
-  } = process.env
-
-  return res.json({ envs })
+  return res.json({
+    NODE_ENV: process.env.NODE_ENV,
+    PORT: process.env.PORT,
+    DB_USER: process.env.DB_USER,
+    DB_PASS: process.env.DB_PASS,
+  })
 })
