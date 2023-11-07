@@ -21,9 +21,11 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-      - image: ghcr.io/thiagomoreirag/poc-vault:latest
+      - name: poc-vault
+        image: ghcr.io/thiagomoreirag/poc-vault:latest
         imagePullPolicy: Always
-        name: poc-vault
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
         resources:
           limits:
             memory: "128Mi"
