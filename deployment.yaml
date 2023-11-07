@@ -38,13 +38,13 @@ spec:
           name: http
         envFrom:
         - configMapRef:
-          name: poc-vault
+            name: poc-vault
         
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: poc-vault-service
+  name: poc-vault
 spec:
   selector:
     app: poc-vault

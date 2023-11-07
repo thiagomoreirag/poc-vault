@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: poc-vault
 data:
-  PORT: 3000
+  PORT: "3000"
   NODE_ENV: "test"
